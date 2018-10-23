@@ -20,6 +20,9 @@
 
 #define LED_PIN            13
 
+bool Xendstop=0;
+bool Yendstop=0;
+bool Zendstop=0;
 
 void setup() {
 
@@ -32,15 +35,21 @@ void setup() {
   pinMode(Y_STEP_PIN, OUTPUT);
   pinMode(Y_DIR_PIN, OUTPUT);
   pinMode(Y_ENABLE_PIN, OUTPUT);
+  pinMode(Y_MIN_PIN, INPUT_PULLUP);
   
   pinMode(Z_STEP_PIN, OUTPUT);
   pinMode(Z_DIR_PIN, OUTPUT);
   pinMode(Z_ENABLE_PIN, OUTPUT);
   
   
-   digitalWrite(X_ENABLE_PIN, LOW);
-   digitalWrite(Y_ENABLE_PIN, LOW);
-   digitalWrite(Z_ENABLE_PIN, LOW);
+   digitalWrite(X_ENABLE_PIN,HIGH);
+   digitalWrite(Y_ENABLE_PIN,HIGH);
+   digitalWrite(Z_ENABLE_PIN,HIGH);
+
+   Xendstop = digitalRead(X_MIN_PIN);
+   Yendstop = digitalRead(Y_MIN_PIN);
+   Zendstop = digitalRead(Z_MIN_PIN);
+
 
 }
 
@@ -52,32 +61,42 @@ void loop () {
     digitalWrite(LED_PIN, HIGH);
   else
     digitalWrite(LED_PIN, LOW);
- 
- // move Y axis
- 
- digitalWrite(Y_DIR_PIN,HIGH);
- digitalWrite(Y_STEP_PIN,HIGH);
- delay(1);
- digitalWrite(Y_STEP_PIN,LOW);
+    
 
- /* if (millis() %10000 <5000) {
-    digitalWrite(X_DIR_PIN, HIGH);
-   // digitalWrite(Y_DIR_PIN, HIGH);
-   // digitalWrite(Z_DIR_PIN, HIGH);
-  }
-  else {
-    digitalWrite(X_DIR_PIN, LOW);
-  //  digitalWrite(Y_DIR_PIN, LOW);
-  //  digitalWrite(Z_DIR_PIN, LOW);
-  } 
+    // send all axis to home
+
+      // move X axis to home
+ while (Xendstop==LOW){
+     Xendstop = digitalRead(X_MIN_PIN);
+     digitalWrite(X_ENABLE_PIN,LOW); // enable y axis to move
+     digitalWrite(X_DIR_PIN,LOW); // set direction
+     digitalWrite(X_STEP_PIN,HIGH); 
+     delay(1);
+     digitalWrite(X_STEP_PIN,LOW); // step X axis 1 step
+     delay(1);
+ }
  
-  digitalWrite(X_STEP_PIN, HIGH);
- // digitalWrite(Y_STEP_PIN, HIGH);
- // digitalWrite(Z_STEP_PIN, HIGH); 
-  delay(1);
-  
-  digitalWrite(X_STEP_PIN, LOW);
- // digitalWrite(Y_STEP_PIN, LOW);
- // digitalWrite(Z_STEP_PIN, LOW); 
- */
+ // move Y axis to home
+ while (Yendstop==LOW){
+     Yendstop = digitalRead(Y_MIN_PIN);
+     digitalWrite(Y_ENABLE_PIN,LOW); // enable y axis to move
+     digitalWrite(Y_DIR_PIN,LOW); // set direction
+     digitalWrite(Y_STEP_PIN,HIGH); 
+     delay(1);
+     digitalWrite(Y_STEP_PIN,LOW); // step y axis 1 step
+     delay(1);
+ }
+
+  // move Z axis to home
+ while (Zendstop==LOW){
+     Zendstop = digitalRead(Z_MIN_PIN);
+     digitalWrite(Z_ENABLE_PIN,LOW); // enable Z axis to move
+     digitalWrite(Z_DIR_PIN,LOW); // set direction
+     digitalWrite(Z_STEP_PIN,HIGH); 
+     delay(1);
+     digitalWrite(Z_STEP_PIN,LOW); // step Z axis 1 step
+     delay(1);
+ }
+    
+
 }
