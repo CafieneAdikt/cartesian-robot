@@ -53,41 +53,31 @@ void loop () {
   else
     digitalWrite(LED_PIN, LOW);
  
-  // move z axis down
-  digitalWrite(Z_DIR_PIN,HIGH);
-  digitalWrite(Z_STEP_PIN,HIGH);
-  delay(10);
-
-  // move x axis
-  digitalWrite(X_DIR_PIN,HIGH);
-  digitalWrite(X_STEP_PIN,HIGH);
-  delay(10);
-
-  // move y axis
-  digitalWrite(Y_DIR_PIN,HIGH);
-  digitalWrite(Y_STEP_PIN,HIGH);
-  delay(10);
-
-
+ // move Y axis
+ 
+ digitalWrite(Y_DIR_PIN,HIGH);
+ digitalWrite(Y_STEP_PIN,HIGH);
+ delay(1);
+ digitalWrite(Y_STEP_PIN,LOW);
 
  /* if (millis() %10000 <5000) {
     digitalWrite(X_DIR_PIN, HIGH);
-    digitalWrite(Y_DIR_PIN, HIGH);
-    digitalWrite(Z_DIR_PIN, HIGH);
+   // digitalWrite(Y_DIR_PIN, HIGH);
+   // digitalWrite(Z_DIR_PIN, HIGH);
   }
   else {
     digitalWrite(X_DIR_PIN, LOW);
-    digitalWrite(Y_DIR_PIN, LOW);
-    digitalWrite(Z_DIR_PIN, LOW);
+  //  digitalWrite(Y_DIR_PIN, LOW);
+  //  digitalWrite(Z_DIR_PIN, LOW);
   } 
  
   digitalWrite(X_STEP_PIN, HIGH);
-  digitalWrite(Y_STEP_PIN, HIGH);
-  digitalWrite(Z_STEP_PIN, HIGH); 
+ // digitalWrite(Y_STEP_PIN, HIGH);
+ // digitalWrite(Z_STEP_PIN, HIGH); 
   delay(1);
   
   digitalWrite(X_STEP_PIN, LOW);
-  digitalWrite(Y_STEP_PIN, LOW);
-  digitalWrite(Z_STEP_PIN, LOW);
-  */  
+ // digitalWrite(Y_STEP_PIN, LOW);
+ // digitalWrite(Z_STEP_PIN, LOW); 
+ */
 }
