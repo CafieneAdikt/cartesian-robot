@@ -102,4 +102,22 @@ void loop () {
  digitalWrite(Y_ENABLE_PIN,HIGH);
  digitalWrite(Z_ENABLE_PIN,HIGH);
  
+
+ // move to centre of paper
+    digitalWrite(Z_ENABLE_PIN,LOW);
+    digitalWrite(Z_DIR_PIN,HIGH); // set direction
+    digitalWrite(Z_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(Z_STEP_PIN,LOW); // step Z axis 1 step
+    delayMicroseconds(500);
+
+
+    digitalWrite(Y_ENABLE_PIN,LOW);
+    digitalWrite(Y_DIR_PIN,HIGH); // set direction
+    digitalWrite(Y_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(Y_STEP_PIN,LOW); // step Y axis 1 step
+    delayMicroseconds(500);
+
+    
 }
