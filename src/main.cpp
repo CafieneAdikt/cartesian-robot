@@ -61,7 +61,7 @@ void loop () {
     digitalWrite(LED_PIN, HIGH);
   else
     digitalWrite(LED_PIN, LOW);
-    
+
 
     // send all axis to home
 
@@ -69,11 +69,11 @@ void loop () {
  while (Xendstop==LOW){
      Xendstop = digitalRead(X_MIN_PIN);
      digitalWrite(X_ENABLE_PIN,LOW); // enable y axis to move
-     digitalWrite(X_DIR_PIN,LOW); // set direction
+     digitalWrite(X_DIR_PIN,HIGH); // set direction
      digitalWrite(X_STEP_PIN,HIGH); 
-     delay(1);
+     delayMicroseconds(500);
      digitalWrite(X_STEP_PIN,LOW); // step X axis 1 step
-     delay(1);
+     delayMicroseconds(500);
  }
  
  // move Y axis to home
@@ -82,9 +82,9 @@ void loop () {
      digitalWrite(Y_ENABLE_PIN,LOW); // enable y axis to move
      digitalWrite(Y_DIR_PIN,LOW); // set direction
      digitalWrite(Y_STEP_PIN,HIGH); 
-     delay(1);
+     delayMicroseconds(500);
      digitalWrite(Y_STEP_PIN,LOW); // step y axis 1 step
-     delay(1);
+     delayMicroseconds(500);
  }
 
   // move Z axis to home
@@ -93,10 +93,13 @@ void loop () {
      digitalWrite(Z_ENABLE_PIN,LOW); // enable Z axis to move
      digitalWrite(Z_DIR_PIN,LOW); // set direction
      digitalWrite(Z_STEP_PIN,HIGH); 
-     delay(1);
+     delayMicroseconds(500);
      digitalWrite(Z_STEP_PIN,LOW); // step Z axis 1 step
-     delay(1);
+     delayMicroseconds(500);
  }
-    
-
+ // disable axis
+ digitalWrite(X_ENABLE_PIN,HIGH);
+ digitalWrite(Y_ENABLE_PIN,HIGH);
+ digitalWrite(Z_ENABLE_PIN,HIGH);
+ 
 }
