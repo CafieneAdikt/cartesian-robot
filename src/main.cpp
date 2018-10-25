@@ -56,6 +56,16 @@ void setup() {
 
    draw_square();
 
+   go_home();
+
+   move_centre();
+
+   draw_triangle();
+
+   go_home();
+
+   move_centre();
+
 
 }
 
@@ -95,19 +105,129 @@ void go_home(){
      digitalWrite(Z_STEP_PIN,LOW); // step Z axis 1 step
      delayMicroseconds(500);
  }
- // disable axis
+ // disable axis 
  digitalWrite(X_ENABLE_PIN,HIGH);
  digitalWrite(Y_ENABLE_PIN,HIGH);
  digitalWrite(Z_ENABLE_PIN,HIGH);
 }
 
 void move_centre(){
+
+    // move to centre of paper
+
+    // Z axis down
+    
+  for (long i=0; i<50; i++){
+    digitalWrite(Z_ENABLE_PIN,LOW);
+    digitalWrite(Z_DIR_PIN,HIGH); // set direction
+    digitalWrite(Z_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(Z_STEP_PIN,LOW); // step Z axis 1 step
+    delayMicroseconds(500);
+  }
+
+
+  for (long i=0; i<50; i++){
+    digitalWrite(Y_ENABLE_PIN,LOW);
+    digitalWrite(Y_DIR_PIN,HIGH); // set direction
+    digitalWrite(Y_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(Y_STEP_PIN,LOW); // step Y axis 1 step
+    delayMicroseconds(500);
+  }
+
+    
+  for (long i=0; i<50; i++){
+    digitalWrite(X_ENABLE_PIN,LOW);
+    digitalWrite(X_DIR_PIN,LOW); // set direction
+    digitalWrite(X_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(X_STEP_PIN,LOW); // step X axis 1 step
+    delayMicroseconds(500);
+  }
   
 }
 
 void draw_square(){
     
+    // bring z axis to pen
+
+  for (long i=0; i<50; i++){
+    digitalWrite(Z_ENABLE_PIN,LOW);
+    digitalWrite(Z_DIR_PIN,LOW); // set direction
+    digitalWrite(Z_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(Z_STEP_PIN,LOW); // step Z axis 1 step
+    delayMicroseconds(500);
+  }
+
+  digitalWrite(Z_ENABLE_PIN,HIGH);
+
+  // draw straight line in x axis forward
+
+  for (long i=0; i<50; i++){
+    digitalWrite(X_ENABLE_PIN,LOW);
+    digitalWrite(X_DIR_PIN,LOW); // set direction
+    digitalWrite(X_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(X_STEP_PIN,LOW); // step X axis 1 step
+    delayMicroseconds(500);
+  }
+
+
+  // draw straight line in y axis forward
+
+  for (long i=0; i<50; i++){
+    digitalWrite(Y_ENABLE_PIN,LOW);
+    digitalWrite(Y_DIR_PIN,HIGH); // set direction
+    digitalWrite(Y_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(Y_STEP_PIN,LOW); // step Y axis 1 step
+    delayMicroseconds(500);
+  }
+
+
+  // draw straight line in x axis back
+
+  for (long i=0; i<50; i++){
+    digitalWrite(X_ENABLE_PIN,LOW);
+    digitalWrite(X_DIR_PIN,HIGH); // set direction
+    digitalWrite(X_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(X_STEP_PIN,LOW); // step X axis 1 step
+    delayMicroseconds(500);
+  }
+
+
+  // draw straight line in y axis back
+
+  for (long i=0; i<50; i++){
+    digitalWrite(Y_ENABLE_PIN,LOW);
+    digitalWrite(Y_DIR_PIN,LOW); // set direction
+    digitalWrite(Y_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(Y_STEP_PIN,LOW); // step Y axis 1 step
+    delayMicroseconds(500);
+  }
+
 }
+
+void draw_triangle(){
+
+    // move z axis to pen
+
+    
+  for (long i=0; i<50; i++){
+    digitalWrite(Z_ENABLE_PIN,LOW);
+    digitalWrite(Z_DIR_PIN,LOW); // set direction
+    digitalWrite(Z_STEP_PIN,HIGH); 
+    delayMicroseconds(500);
+    digitalWrite(Z_STEP_PIN,LOW); // step Z axis 1 step
+    delayMicroseconds(500);
+  }
+
+}
+
 
 void loop () {
 
@@ -117,26 +237,5 @@ void loop () {
     digitalWrite(LED_PIN, HIGH);
   else
     digitalWrite(LED_PIN, LOW);
-
-
-  
- 
-
- // move to centre of paper
-    digitalWrite(Z_ENABLE_PIN,LOW);
-    digitalWrite(Z_DIR_PIN,HIGH); // set direction
-    digitalWrite(Z_STEP_PIN,HIGH); 
-    delayMicroseconds(500);
-    digitalWrite(Z_STEP_PIN,LOW); // step Z axis 1 step
-    delayMicroseconds(500);
-
-
-    digitalWrite(Y_ENABLE_PIN,LOW);
-    digitalWrite(Y_DIR_PIN,HIGH); // set direction
-    digitalWrite(Y_STEP_PIN,HIGH); 
-    delayMicroseconds(500);
-    digitalWrite(Y_STEP_PIN,LOW); // step Y axis 1 step
-    delayMicroseconds(500);
-
     
 }
