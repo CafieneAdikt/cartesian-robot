@@ -50,18 +50,16 @@ void setup() {
    Yendstop = digitalRead(Y_MIN_PIN);
    Zendstop = digitalRead(Z_MIN_PIN);
 
+   go_home();
+   
+   move_centre();
+
+   draw_square();
+
 
 }
 
-void loop () {
-
- // Blink LED
-
-  if (millis() %1000 <500) 
-    digitalWrite(LED_PIN, HIGH);
-  else
-    digitalWrite(LED_PIN, LOW);
-
+void go_home(){
 
     // send all axis to home
 
@@ -101,6 +99,27 @@ void loop () {
  digitalWrite(X_ENABLE_PIN,HIGH);
  digitalWrite(Y_ENABLE_PIN,HIGH);
  digitalWrite(Z_ENABLE_PIN,HIGH);
+}
+
+void move_centre(){
+  
+}
+
+void draw_square(){
+    
+}
+
+void loop () {
+
+ // Blink LED
+
+  if (millis() %1000 <500) 
+    digitalWrite(LED_PIN, HIGH);
+  else
+    digitalWrite(LED_PIN, LOW);
+
+
+  
  
 
  // move to centre of paper
